@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+# 管理者用
+# URL /admin/sign_in ...
+  devise_for :admin,skip:[:registrations,:passwords],controllers:{
+    sessions: "admin/sessions"
+  }
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+
   namespace :admin do
 
     root to: 'homes#top'
@@ -9,16 +17,22 @@ Rails.application.routes.draw do
     resources :orders ,only:[:show, :update]
     patch '/orders/:order_id/order_details/:id' => 'order_details#update' #製作ステータスの更新　　もしくはネストはなくてもよい /admin/order_details/:id
 
-
   end
 
+# 顧客用
+# URL /customers/sign_in ...
+  devise_for :customers,skip:[:passwords],controllers:{
+    registration: "public/registrations",
+    sessions: 'public/sessions'
+  }
 
     scope module: :public do
 
     root to: 'homes#top'
     get '/about' => 'homes#about' ,as: 'about'
     resources :items ,only:[:index, :show]
-    resources :customers ,only:[:show, :edit, :update]
+    resources :customers ,only:[:edit, :update]
+    get '/customers/my_page' => 'customers#show'
     get '/customers/unsubscribe' => 'customers#unsubscribe' #顧客の退会確認画面
     get '/customers/withdraw' => 'customers#withdraw' #顧客の退会処理(ステータスの更新)
     resources :cart_items ,only:[:index, :update, :create, :destroy]
@@ -30,18 +44,4 @@ Rails.application.routes.draw do
 
   end
 
-
-# 顧客用
-# URL /customers/sign_in ...
-  devise_for :customers,skip:[:passwords],controllers:{
-    registration: "public/registrations",
-    sessions: 'public/sessions'
-  }
-
-# 管理者用
-# URL /admin/sign_in ...
-  devise_for :admin,skip:[:registrations,:passwords],controllers:{
-    sessions: "admin/sessions"
-  }
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
