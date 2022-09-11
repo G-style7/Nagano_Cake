@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(resource) # topページへ遷移
     root_path
   end
 
-  def after_sign_out_path_for(resource)
+  def after_sign_out_path_for(resource) # 顧客ログイン画面へ遷移
     new_customer_session_path
   end
 
