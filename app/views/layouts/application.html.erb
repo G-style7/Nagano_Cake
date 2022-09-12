@@ -10,6 +10,65 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header>
+    <% if admin_signed_in? %>
+      <li>
+        <%= link_to "商品一覧", admin_items_path , class: "nav-link text-light" do %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "会員一覧", admin_customers_path , class: "nav-link text-light" do %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "注文履歴一覧", orders_path , class: "nav-link text-light" do %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "ジャンル一覧", admin_genres , class: "nav-link text-light" do %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "ログアウト", new_admin_session_path, class: "nav-link text-light" do %>
+        <% end %>
+      </li>
+    <% elsif %>
+      <li>
+       <%= link_to "マイページ", customers_my_page, class: "nav-link text-light" do %>
+       <% end %>
+      </li>
+      <li>
+       <%= link_to "商品一覧", items_path, class: "nav-link text-light" do %>
+       <% end %>
+      </li>
+      <li>
+        <%= link_to "カート", cart_items_path, class: "nav-link text-light" do %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "ログアウト" , root_path, class: "nav-link text-light" do %>
+        <% end %>
+      </li>
+    <% else %>
+     <li>
+      <%= link_to "About", about_path , class: "nav-link text-light" do %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "商品一覧" , items_path , class: "nav-link text-light" do %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "新規登録" , new_customer_registration_path , class: "nav-link text-light" do %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "ログイン" , new_customer_session_path , class: "nav-link text-light" do %>
+      <% end %>
+    </li>
+    <% end %>
+  </header>
+
   <body>
     <%= yield %>
   </body>
