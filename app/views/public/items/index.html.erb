@@ -1,2 +1,16 @@
-<h1>Public::Items#index</h1>
+<div class = "container">
+<h1>商品一覧</h1>
+
+<% @items.each do |item| %>
+
+<%= link_to admin_items_path(item.admin.id) do %>
+<%= image_tag item.admin.get_image(100,100) %>
+<% end %>
+
+<%= link_to item.title, admin_item_path(item.id) %>
+<%= @item.price %> 
+<% end %>
+ 
+
 <p>Find me in app/views/public/items/index.html.erb</p>
+</div>
