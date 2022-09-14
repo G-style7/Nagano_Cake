@@ -11,13 +11,12 @@
   </head>
 
   <header>
-    <nav class = "navbar navbar-dark bg-light lg">
+    <nav class = "navbar navbar-dark bg-light "> <%# ヘッダー全ての色 %>
     <div class = "container">
-      <%= link_to "LOGO" ,root_path ,class: "btn btn-outline-secondary font-weight-bold" %>
-      <div class = 'row'>
-
-
-
+      <%= link_to "LOGO" ,root_path ,class: "btn btn-outline-secondary font-weight-bold " %>
+      <div class = "row">
+      <div class = "col"> 
+      
     <% if admin_signed_in? %>
       <li>
         <%= link_to "商品一覧", admin_items_path , class: "btn btn-outline-secondary mr-3" %>
@@ -62,14 +61,12 @@
       <%= link_to "ログイン" , new_customer_session_path , class: "btn btn-outline-secondary mr-3" %>
     </ul>
     <% end %>
-    <div class ="input-group col-5 text-right">
+    <div class ="input-group col-6 ml-auto"> <%# なぜautoだと右よせになる？ %>
       <input type = "text" id="txt-search" class= "form-control input-group-append " placeholder="Search" ></input>
       <span class ="input-group-btn input-group-append">
         <submit type = "submit" id ="btn-search" class="btn btn-primary"><i class ="fas fa-search"></i></submit>
       </span>
-    </div>
-
-
+      </div> 
     </div>
     </div>
     </nav>
