@@ -11,65 +11,41 @@
   </head>
 
   <header>
-    <nav class = "navbar navbar-dark bg-light "> <%# ヘッダー全ての色 %>
+   <nav class = "navbar navbar-dark bg-light "> <%# ヘッダー全ての色 %>
     <div class = "container">
       <%= link_to "LOGO" ,root_path ,class: "btn btn-outline-secondary font-weight-bold " %>
-      <div class = "row">
-      <div class = "col"> 
-      
+     <div class = "row">
+      <div class = "col ">
+
     <% if admin_signed_in? %>
-      <li>
-        <%= link_to "商品一覧", admin_items_path , class: "btn btn-outline-secondary mr-3" %>
-      </li>
-      <li>
-        <%= link_to "会員一覧", admin_customers_path , class: "btn btn-outline-secondary mr-3" %>
-      </li>
-      <li>
-        <%= link_to "注文履歴一覧", orders_path , class: "btn btn-outline-secondary mr-3" %>
-      </li>
-      <li>
-        <%= link_to "ジャンル一覧", admin_genres_path , class: "btn btn-outline-secondary mr-3" %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %>
-      </li>
+      <li><%= link_to "商品一覧", admin_items_path , class: "btn btn-outline-secondary mr-3" %></li>
+      <li><%= link_to "会員一覧", admin_customers_path , class: "btn btn-outline-secondary mr-3" %></li>
+      <li><%= link_to "注文履歴一覧", orders_path , class: "btn btn-outline-secondary mr-3" %></li>
+      <li><%= link_to "ジャンル一覧", admin_genres_path , class: "btn btn-outline-secondary mr-3" %></li>
+      <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %></li>
 
     <% elsif customer_signed_in? %>
-      <li>
-       <%= link_to "マイページ", customers_my_page, class: "btn btn-outline-secondary mr-3" %>
-      </li>
-      <li>
-       <%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary mr-3" %>
-      </li>
-      <li>
-        <%= link_to "カート", cart_items_path, class: "btn btn-outline-secondary mr-3" %>
-      </li>
-      <li>
-        <%= link_to "ログアウト" , destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %>
-      </li>
+      <li><%= link_to "マイページ", customers_my_page, class: "btn btn-outline-secondary mr-3" %></li>
+      <li><%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary mr-3" %></li>
+      <li><%= link_to "カート", cart_items_path, class: "btn btn-outline-secondary mr-3" %></li>
+      <li><%= link_to "ログアウト" , destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %></li>
     <% else %>
      <ul>
       <%= link_to "About", about_path , class: "btn btn-outline-secondary mr-3 " %>
-
-
       <%= link_to "商品一覧" , items_path , class: "btn btn-outline-secondary mr-3" %>
-
-
       <%= link_to "新規登録" , new_customer_registration_path , class: "btn btn-outline-secondary mr-3" %>
-
-
       <%= link_to "ログイン" , new_customer_session_path , class: "btn btn-outline-secondary mr-3" %>
-    </ul>
+     </ul>
     <% end %>
     <div class ="input-group col-6 ml-auto"> <%# なぜautoだと右よせになる？ %>
       <input type = "text" id="txt-search" class= "form-control input-group-append " placeholder="Search" ></input>
       <span class ="input-group-btn input-group-append">
         <submit type = "submit" id ="btn-search" class="btn btn-primary"><i class ="fas fa-search"></i></submit>
       </span>
-      </div> 
+      </div>
+     </div>
     </div>
-    </div>
-    </nav>
+   </nav>
   </header>
 
   <body>
