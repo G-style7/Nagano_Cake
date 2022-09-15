@@ -3,17 +3,14 @@
   <div class ="col-auto" >
    <h1>商品新規登録</h1>
   </div>
-  <%= form_with model: @admin , method: :post do |f| %>
+  <%= form_with model: @item , method: :post do |f| %>
     <label for = "image">商品画像</label><br>
-    <%= f.file_field :item_image, class: "form-control-file" %><br> <%# item_image 入れる？ %>
+    <%= f.file_field :image, class: "form-control-file" %><br> <%# imageはカラム名（has_one_attached）と同じ %>
     <label for = "item_name">商品名</label><br>
     <%= f.text_field :item_name, class: "form-control item_name" %><br>
     <label for = "item-explanation">商品説明</label><br>
-    <%= f.text_area :item_explanation, class: "form-control item_explanation" %><br> <%# explanation(説明) %>
-  <div class = "input-group mb-3">
-   <span class ="input-group-text"></span>
-   <input type ="text" class = "form-control" placeholder= ここに説明文を記述します>
-  </div>
+    <%= f.text_area :item_explanation, class: "form-control item_explanation" , :placeholder => "ここに説明文を記述します" %><br> <%# explanation(説明) %>
+
   <div class ="form-group">
    <label for ="genre_name" class ="form-label">ジャンル</label><br>
    <select class ="form-control">
@@ -24,17 +21,16 @@
     <option name ="4">キャンディ</option>
    </select>
   </div>
-
 <label for = "sale_status" class ="form-label">販売ステータス</label><br>
  <div class = "custom-control custom-radio">
-  <input type="radio" class="custom-control-input">
-   <label for ="radio" class="custom-control-label">
+  <input type="radio" class="custom-control-input" name="formRadioDefault" id="formRadioDefault1">
+   <label for ="formRadioDefault1" class="custom-control-label">
     販売中
    </label>
 
  <div class = "custom-control custom-radio">
-  <input type="radio" class="custom-control-input">
-   <label for ="radio" class="custom-control-label">
+  <input type="radio" class="custom-control-input" name="formRadioDefault" id="formRadioDefault2">
+   <label for ="formRadioDefault2" class="custom-control-label ">
     販売停止中
    </label>
  </div>
