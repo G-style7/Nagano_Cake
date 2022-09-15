@@ -18,17 +18,18 @@
       <div class = "col ">
 
     <% if admin_signed_in? %>
-      <li><%= link_to "商品一覧", admin_items_path , class: "btn btn-outline-secondary mr-3" %></li>
-      <li><%= link_to "会員一覧", admin_customers_path , class: "btn btn-outline-secondary mr-3" %></li>
-      <li><%= link_to "注文履歴一覧", orders_path , class: "btn btn-outline-secondary mr-3" %></li>
-      <li><%= link_to "ジャンル一覧", admin_genres_path , class: "btn btn-outline-secondary mr-3" %></li>
-      <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %></li>
+      <%= link_to "商品一覧", admin_items_path , class: "btn btn-outline-secondary mr-3" %>
+      <%= link_to "会員一覧", admin_customers_path , class: "btn btn-outline-secondary mr-3" %>
+      <%= link_to "注文履歴一覧", orders_path , class: "btn btn-outline-secondary mr-3" %>
+      <%= link_to "ジャンル一覧", admin_genres_path , class: "btn btn-outline-secondary mr-3" %>
+      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %>
 
     <% elsif customer_signed_in? %>
-      <li><%= link_to "マイページ", customers_my_page, class: "btn btn-outline-secondary mr-3" %></li>
-      <li><%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary mr-3" %></li>
-      <li><%= link_to "カート", cart_items_path, class: "btn btn-outline-secondary mr-3" %></li>
-      <li><%= link_to "ログアウト" , destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %></li>
+      <ul>
+      <%= link_to "マイページ", customers_my_page, class: "btn btn-outline-secondary mr-3" %>
+      <%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary mr-3" %>
+      <%= link_to "カート", cart_items_path, class: "btn btn-outline-secondary mr-3" %>
+      <%= link_to "ログアウト" , destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %>
     <% else %>
      <ul>
       <%= link_to "About", about_path , class: "btn btn-outline-secondary mr-3 " %>
