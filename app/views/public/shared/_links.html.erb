@@ -1,9 +1,9 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
+  <%= link_to "こちら", new_session_path(resource_name) %><p>からログインしてください。</p><br />
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+  <%= link_to "こちら", new_registration_path(resource_name) %><p>から新規登録を行ってください。</p><br />
 <% end %>
 
 <!--以下は顧客側には、サインアップ・サインインの機能のみが存在しているのでそれ以外の記述を削除している-->
