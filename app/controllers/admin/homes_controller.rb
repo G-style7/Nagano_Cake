@@ -1,4 +1,6 @@
 class Admin::HomesController < ApplicationController
-  def top
+  def top  #注文履歴一覧（adminのtop）
+   @orders = Order.all
+   @order = Order.find(order.id)
   end
 end
