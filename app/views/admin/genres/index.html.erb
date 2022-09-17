@@ -10,10 +10,18 @@
    </div>
   </div>
  </div>
+ <div>
     <h2>ジャンル</h2>
-     <table class='table'>
-      <tr>
-       <td>
-         <%= @genre.name %>. each?
-       </td>
-      </tr>
+     <table class= "table" >
+      <thead>
+        <% @genres.each do |genre| %>
+        <tbody>
+       <tr>
+        <%= genre.name %>
+        <%= button_to "編集する" ,admin_genres_path, method: :post ,class: "btn btn-success" %><br>
+       </tr>
+       </tbody>
+      </thead>
+        <% end %>
+     </table>
+ </div>
