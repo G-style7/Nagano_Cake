@@ -16,7 +16,8 @@
 
 
       <%= f.label "ジャンル" %><br>
-      <%= f.select :genre_id, ['ケーキ','プリン','焼き菓子','キャンディ'], {include_blank: '--選択して下さい--'} %><br>
+      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) ,{include_blank: '--選択して下さい--'} %><br>
+      <%#= f.select :genre_id, ['ケーキ','プリン','焼き菓子','キャンディ'], {include_blank: '--選択して下さい--'} %>
 
       <%= f.label "税抜価格" %><br>
       <%= f.text_field :price , class: "form-controll"  %><br>
