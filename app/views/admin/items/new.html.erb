@@ -3,7 +3,8 @@
   <div class ="col-auto" >
    <h1>商品新規登録</h1>
   </div>
-     <%= form_with model: @item , method: :post do |f| %>
+     <%#= form_with model:[:admin,@item], method: :post do |f| %>
+      <%= form_with model: @item ,url: admin_items_path,  method: :post do |f| %>
 
       <%= f.label "商品画像" %>
       <%= f.file_field :image, class: "form-control-file" %><br> <%# imageはカラム名（has_one_attached）と同じ %>
@@ -16,7 +17,8 @@
 
 
       <%= f.label "ジャンル" %><br>
-      <%= f.select :genre_id, ['ケーキ','プリン','焼き菓子','キャンディ'], {include_blank: '--選択して下さい--'} %><br>
+      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %><br>
+      <%#= f.select :genre_id, ['ケーキ','プリン','焼き菓子','キャンディ'], {include_blank: '--選択して下さい--'} %>
 
       <%= f.label "税抜価格" %><br>
       <%= f.text_field :price , class: "form-controll price" , :placeholder => "1000" %>円<br>
