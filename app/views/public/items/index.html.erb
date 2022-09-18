@@ -3,14 +3,12 @@
 
 <% @items.each do |item| %>
 
-<%= link_to admin_items_path(item.admin.id) do %>
-<%= image_tag item.admin.get_image(100,100) %>
+<%= link_to item_path(item.id) do %> <%#該当商品の詳細ページへ遷移したい %>
+<%= image_tag item.get_image(100,100) %>
 <% end %>
 
-<%= link_to item.title, admin_item_path(item.id) %>
-<%= @item.price %> 
+<%= link_to item.name,item_path(item.id) %>
+<%= item.price %>
 <% end %>
- 
 
-<p>Find me in app/views/public/items/index.html.erb</p>
 </div>

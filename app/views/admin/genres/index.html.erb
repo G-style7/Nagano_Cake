@@ -13,15 +13,11 @@
  <div>
     <h2>ジャンル</h2>
      <table class= "table" >
-      <thead>
         <% @genres.each do |genre| %>
-        <tbody>
        <tr>
         <%= genre.name %>
-        <%= button_to "編集する" ,admin_genres_path, method: :post ,class: "btn btn-success" %><br>
+        <%= link_to "編集する" ,edit_admin_genre_path(genre.id) ,class: "btn btn-success" %><br>
        </tr>
-       </tbody>
-      </thead>
         <% end %>
      </table>
  </div>
