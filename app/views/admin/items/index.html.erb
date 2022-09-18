@@ -3,8 +3,10 @@
 
 
     <h1>商品一覧</h1>
-    新規登録ボタン作成link_toで
-    
+     <%= link_to new_admin_item_path, class: 'btn btn-default' do %>
+      <i class="fa fa-arrow-up"></i>
+     <% end %>
+
     <table class = "table" >
      <div class "col">
       <thead>
@@ -20,7 +22,7 @@
        <% @item.each do |item| %>
        <tr>
         <td><%= item.id %></td>
-        <td><%= item.name %></td> 
+        <td><%=link_to item.name ,admin_item_path(item.id) %></td>
         <td><%= item.price %></td>
         <td><%= item.genre_id %></td>
         <td><%= item.is_active %></td>
