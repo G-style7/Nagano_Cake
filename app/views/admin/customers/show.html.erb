@@ -1,26 +1,52 @@
 <div class = "container">
-  <div class ="col">
-<h2><%= @customer.customer.last_name+customer.first_name %>さんの会員詳細</h2>
-
-   <div class="field mb-4">
-    <td>
-          <%= "会員ID" %><br>
-          <%= @customer.customer.id %>
-          <%= "氏名" %><br>
-          <%= @customer.customer.last_name+customer.first_name %>
-          <%= "フリガナ" %><br>
-          <%= @customer.customer.last_name_kana+customer.first_name_kana %>
-          <%= "郵便番号" %><br>
-          <%= @customer.postal_code %>
-          <%= "住所" %><br>
-          <%= @customer.address %>
-          <%= "電話番号" %><br>
-          <%= @customer.telephone_number %>
-          <%= "メールアドレス" %><br>
-          <%= @customer.email %>
-          <%= "会員ステータス" %><br>
-
-    </td>
-
+ <div class = "row">
+  <div class ="col-5">
+   <h2><%= @customer.full_name %>さんの会員詳細</h2>
   </div>
  </div>
+</div>
+
+   <div class = "row text-center mt-5">
+    <div class = "col-5">
+      <table class = "table">
+        <tr>
+         <td><%= "会員ID" %></td>
+         <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+         <td><%= "氏名" %></td>
+         <td><%= @customer.full_name %></td>
+        </tr>
+        <tr>
+         <td><%= "フリガナ" %></td>
+         <td><%= @customer.full_name_kana %></td>
+        </tr>
+        <tr>
+         <td><%= "郵便番号" %></td>
+         <td><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+         <td><%= "住所" %></td>
+         <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+         <td><%= "電話番号" %></td>
+         <td><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+         <td><%= "メールアドレス" %></td>
+         <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+         <td><%= "会員ステータス" %></td>
+         <td><% if @customer.is_deleted %></td>
+            <p>退会</p>
+           <% else %>
+            <P>有効</P>
+           <% end %>
+        </tr>
+      </table>
+     </div>
+    </div>
+
+ 
