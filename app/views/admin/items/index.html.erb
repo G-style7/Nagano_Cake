@@ -3,6 +3,7 @@
 
 
     <h1>商品一覧</h1>
+     <h3><%= Item.count %>件</h3>
      <%= link_to new_admin_item_path, class: 'btn btn-default' do %>
       <i class="fa fa-arrow-up"></i>
      <% end %>
@@ -23,9 +24,18 @@
        <tr>
         <td><%= item.id %></td>
         <td><%=link_to item.name ,admin_item_path(item.id) %></td>
-        <td><%= item.price %></td>
-        <td><%= item.genre_id %></td>
-        <td><%= item.is_active %></td>
+        <td><%= item.price %>円</td>
+        <td>
+         <%#= Genre.find(item.genre_id).name %> <%# idを使ってジャンルを探す %>
+         <%= item.genre.name %> <%# リレーションを使ったやり方 %>
+        </td>
+        <td>
+         <% if item.is_active %>
+          <p>販売停止中</p>
+         <% else %>
+          <p>販売中</p>
+         <% end %>
+        </td>
        </tr>
        <% end %>
 

@@ -4,11 +4,11 @@
 <% @items.each do |item| %>
 
 <%= link_to item_path(item.id) do %> <%#該当商品の詳細ページへ遷移したい %>
-<%= image_tag item.get_image(100,100) %>
+<%= image_tag item.get_image(100,100) %><br>
 <% end %>
 
-<%= link_to item.name,item_path(item.id) %>
-<%= item.price %>
+<%= link_to item.name,item_path(item.id) %><br>
+<%= item.price %>円<br>
 <% end %>
 
 </div>

@@ -10,14 +10,17 @@
    </div>
   </div>
  </div>
- <div>
+ 
+ <div class = "row" >
+ <div class = "col-4 offset-1">
     <h2>ジャンル</h2>
      <table class= "table" >
         <% @genres.each do |genre| %>
        <tr>
-        <%= genre.name %>
-        <%= link_to "編集する" ,edit_admin_genre_path(genre.id) ,class: "btn btn-success" %><br>
+        <td><%= genre.name %></td>
+        <td><%= link_to "編集する" ,edit_admin_genre_path(genre.id) ,class: "btn btn-success" %></td>
        </tr>
         <% end %>
      </table>
+ </div>
  </div>

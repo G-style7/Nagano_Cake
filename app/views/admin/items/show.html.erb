@@ -19,16 +19,22 @@
           <%= @item.genre.name %><br>
 
           <%= "税込価格" %><br>
+          <%= @item.with_tax_price %>円<br>
           <%= "（税抜価格）" %>
-          <%= @item.price %><br>
+          <%= @item.price %>円<br>
 
           <%= "販売ステータス" %>
-          <%= @item.is_active %>
+          <% if @item.is_active %>
+           <p>販売停止中</p>
+          <% else %>
+           <p>販売中</p>
+          <% end %>
         </td>
-          <div class = "col" >
-          <%= link_to "編集する" , edit_admin_item_path(@item.id) ,class: "btn btn-success" %>
-          </div>
      </tr>
     </table>
+    <div class = "col text-center" >
+          <%= link_to "編集する" , edit_admin_item_path(@item.id) ,class: "btn btn-success" %>
+    </div>
+
   </div>
  </div>

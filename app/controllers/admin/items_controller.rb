@@ -10,8 +10,8 @@ class Admin::ItemsController < ApplicationController
   end
 
   def index
-    @item =Item.all
-
+    @item = Item.all
+  
   end
 
   def show
