@@ -21,7 +21,7 @@
           <%= "税込価格" %><br>
           <%= @item.with_tax_price %>円<br>
           <%= "（税抜価格）" %>
-          <%= @item.price %>円<br>
+          (<%= @item.price %>)円<br>
 
           <%= "販売ステータス" %>
           <% if @item.is_active %>
