@@ -6,8 +6,55 @@
  </div>
 </div>
 
-   <%= form_with model: @customer, url: admin_order_path(@customer.id), method: :patch do |f| %>
-   <%= f.label "会員ID" %>
-   <%= f.text_field : @customer.id, class: "form-control" %>
-   <% end %>
+   <div class = "row text-center mt-5" >
+    <div class = "col ml-4 " >
+     <table class = "table">
 
+   <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
+   <tr>
+    <td><%= f.label "会員ID" %></td>
+    <td><%= f.text_field :customer_id, class: "form-control " %></td>
+   </tr>
+   <tr>
+    <td><%= f.label "氏名" %></td>
+    <td><%= f.text_field :last_name ,class: "form-control" %></td>
+    <td><%= f.text_field :first_name ,class: "form-control" %></td>
+   </tr>
+   <tr>
+    <td><%= f.label "フリガナ" %></td>
+    <td><%= f.text_field :last_name_kana ,class: "form-control" %></td>
+    <td><%= f.text_field :first_name_kana ,class: "form-control" %></td>
+   </tr>
+   <tr>
+    <td><%= f.label "郵便番号" %></td>
+    <td><%= f.text_field :postal_code ,class: "form-control" %></td>
+   </tr>
+   <tr>
+    <td><%= f.label "住所" %></td>
+    <td><%= f.text_field :address ,class: "form-control" %></td>
+   </tr>
+   <tr>
+    <td><%= f.label "電話番号" %></td>
+    <td><%= f.text_field :telephone_number ,class: "form-control" %></td>
+   </tr>
+   <tr>
+    <td><%= f.label "メールアドレス" %></td>
+    <td><%= f.text_field :email ,class: "form-control" %></td>
+   </tr>
+   <tr>
+    <td><%= f.label "会員ステータス" %></td>
+    <td>
+    <%= f.label "is_deleted",'退会', value: true %>
+    <%= f.radio_button :is_deleted, 'true' %>
+    <%= f.label "is_deleted",'有効', value: false %>
+    <%= f.radio_button :is_deleted, 'false' %>
+    </td>
+
+    <td><%= f.submit "変更を保存" ,class: "btn btn-success" %></td>
+   </tr>
+
+
+   <% end %>
+     </table>
+    </div>
+   </div>

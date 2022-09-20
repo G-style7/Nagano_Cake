@@ -39,11 +39,12 @@
         </tr>
         <tr>
          <td><%= "会員ステータス" %></td>
-         <td><% if @customer.is_deleted %></td>
-            <p class = "text-secondary">退会</p>
-           <% else %>
-            <P class = "text-success">有効</P>
-           <% end %>
+         <td><% if @customer.is_deleted %>
+              <p class = "text-secondary">退会</p>
+             <% else %>
+              <P class = "text-success">有効</P>
+             <% end %>
+         </td>
         </tr>
         <tr>
          <td> </td>
