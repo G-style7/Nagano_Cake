@@ -14,6 +14,12 @@ class Public::AddressesController < ApplicationController
   def edit
   end
 
+  def destroy
+    address = current_customer.address
+    address.destroy
+    redirect_to edit_address_path
+  end
+
 private
   def address_params
     params.require(:address).permit(:postal_code, :address, :name)
