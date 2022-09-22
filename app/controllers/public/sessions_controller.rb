@@ -2,6 +2,10 @@
 
 class Public::SessionsController < Devise::SessionsController
   #before_action :configure_permitted_parameters, if: :devise_controller? 郵便番号等ログインに必要なデータの許可
+  # if is_deleted true && !false
+  # else
+
+  before_action :customer_state, only: [:create]
 
   def after_sign_in_path_for(resource) # topページへ遷移
     root_path
@@ -23,10 +27,13 @@ class Public::SessionsController < Devise::SessionsController
     ## 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
      if @customer.valid_password?(params[:customer][:password])
      ## 【処理内容3】
+
+      if @customer.is_deleted == true
+        redirect_to root_path
+      end
      end
     end
-     
- end
+end
 
   #before_action :configure_sign_in_params, only: [:create]
 

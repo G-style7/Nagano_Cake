@@ -11,8 +11,8 @@ class Public::OrdersController < ApplicationController
   def show
   end
 
-  def confirm
-   @order = Order.new(order_params) #注文情報に送るためだけのアクション？
+  def confirm　 #注文情報に送るためだけのアクション
+   @order = Order.new(order_params)
 
    if params[:select_address] == "1"
      @order.postal_code = current_customer.postal_code #
