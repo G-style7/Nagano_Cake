@@ -2,7 +2,7 @@
    <div class ="row" >
 
 
-    <h1>配送先一覧</h1>
+    <h1>配送先登録/一覧</h1>
      <%= form_with model: @address, url: addresses_path ,method: :post do |f| %>　<%# method: :post はなくてもよい %>
       <%= f.label "郵便番号（ハイフンなし）" %>
       <%= f.text_field :postal_code ,class: "form-control" %><br>
@@ -36,7 +36,6 @@
         </td>
         <td>
          <%= link_to "削除する" ,address_path(address.id), method: :delete ,class: "btn btn-danger" %>
-
         </td>
        </tr>
        <% end %>

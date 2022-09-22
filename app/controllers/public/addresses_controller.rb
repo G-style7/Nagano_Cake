@@ -12,6 +12,15 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
+    @address = current_customer(address.id)
+  end
+
+  def update
+    if @address.update(address_params)
+       redirect_to addresses_path
+    else
+      render edit
+    end
   end
 
   def destroy
