@@ -1,7 +1,7 @@
 class Public::AddressesController < ApplicationController
   def index
     @address = Address.new
-    @addresses = current_customer.addresses
+    @addresses = current_customer.addresses #ここにはcurrent_customerの登録してある住所を持ってきたい
   end
 
   def create
@@ -12,7 +12,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
-    @address = current_customer(address.id)
+    @address = current_customer(address.id) #ここにはcurrent_customerの登録してある1つの住所を持ってきたい
   end
 
   def update

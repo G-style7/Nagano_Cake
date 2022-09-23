@@ -1,2 +1,33 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+  <div class = "container">
+    <div class = "row">
+     <div class ="col-2 mr-3 bg-secondary">
+       <%= "ジャンル検索" %>
+     </div>
+       <div class = "col mr-3 bg-secondary">
+         <%= image_tag @item.get_image(100,100) %>
+       </div>
+       <div class ="col mr-3 bg-info">
+        <%= @item.name %><br>
+        <%= @item.introduction %><br>
+        ¥<%= @item.with_tax_price %>(税込)
+       </div>
+    </div>
+       <div class ="col mt-4 ">
+        <%= form_with model: @amount ,url: cart_items_path, method: :post do |f| %>
+        <%= f.label :個数選択 %>
+        <%= f.select :amount ["1..3"], {include_blank: '選択ボックス'}, class: 'sample' %>
+        <%= f.submit "カートに入れる" ,class: "btn btn-success" %>
+        <% end %>
+       </div>
+     <div class = "row mt-4 ml-8">
+      <select class="form-select" aria-label="Default select example">
+       <option selected>個数選択</option>
+       <option value="1">1</option>
+       <option value="2">2</option>
+       <option value="3">3</option>
+      </select>
+     </div>
+     
+    </div>
+   </div>
+  </div>

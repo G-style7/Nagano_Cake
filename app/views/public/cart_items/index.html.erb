@@ -1,2 +1,52 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+ <div class ="container">
+  <div class ="row" >
+     <div class = "col-6">
+      <h3>ショッピングカート</h3>
+     </div>
+  </div>
+      <table class = "table" >
+       <div class  "row">
+        <thead>
+         <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th></th>
+         </tr>
+        </thead>
+        <tbody>
+         <%= form_with model: @cart_items do |f| %>
+         <tr>
+          <td><%= f.hidden_field :name, :value => "  " %></td> <%# f.hidden_fieldの意味がわからない %>
+          <td><%= f.hidden_field :with_tax_price, :value => "  " %></td>
+          <td>
+              <%= f.select :amount, *[1..10] %>
+              <%= f.submit "変更" ,class: "btn btn-success" %>
+          </td>
+          <td><%= f.hidden_field :price, :value => "  " %></td> <%# :price*amountを入れたい %>
+          <td><%= f.submit "削除する",url: cart_items_path, method: :delete, class: "btn btn-danger" %></td> <%# submit にurlとmethod指定いい？ %>
+         </tr>
+        </tbody>
+       </div>
+      </table>
+      
+       <div class ="row" >
+        <div class = "col-6 text-left">
+         <%= link_to "買い物を続ける" ,items_path, class: "btn btn-primary" %> 
+        </div>
+        <div class = "col-6 text-right">
+         <tr>
+          <%= f.label "合計金額" %>
+          <%= f.text_field "小計の合計をいれたい" %> <%# 小計の合計をいれたい %>
+         </tr>
+        </div>
+       </div>
+       <div class = "row mt-4" >
+        <div class = "col mr-4">
+         <%= f.submit "情報入力に進む" ,class: "btn btn-success" %>
+        </div>
+       </div>
+         <% end %>
+ </div>
+     
