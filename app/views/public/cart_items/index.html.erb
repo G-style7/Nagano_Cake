@@ -1,7 +1,10 @@
  <div class ="container">
   <div class ="row" >
-     <div class = "col-6">
+     <div class = "col-8">
       <h3>ショッピングカート</h3>
+     </div>
+     <div class ="col-4 text-center">
+       <%= link_to "カートを空にする" ,cart_items_destroy_all_path, method: :delete ,class: "btn btn-danger" %>
      </div>
   </div>
       <table class = "table" >
@@ -18,15 +21,14 @@
         <tbody>
          <% @items.each do |item| %>
           <tr>
-           <td><% item.name %></td>
-           <td><% item.with_tax_price %></td>
-
-          <%= form_with model: @cart_items do |f| %>
+           <td><%= item.name %></td>
+           <td><%= item.with_tax_price %></td>
+           <td><%#= item.sum_price %></td>
+          <%= form_with model: @cart_item do |f| %>
            <td>
               <%= f.select :amount, *[1..10] %>
-              <%= f.submit "変更" , url: cart_items_path , class: "btn btn-success" %>
+              <%= f.submit "変更" , url: cart_items_path , method: :patch, class: "btn btn-success" %>
           </td>
-          <td></td>
           <td><%= f.submit "削除する",url: cart_items_path, method: :delete, class: "btn btn-danger" %></td> <%# submit にurlとmethod指定いい？ %>
           </tr>
           <% end %>
@@ -41,7 +43,7 @@
         <div class = "col-5">
          <tr>
           <td><%= "合計金額" %></td>
-          <td><%= "小計の合計をいれたい total=0?" %></td> <%# 小計の合計をいれたい %>
+          <td>¥<%= @total.round.to_s(:delimited)%></td> <%# 小計の合計をいれたい %>
          </tr>
         </div>
        </div>
