@@ -16,37 +16,39 @@
          </tr>
         </thead>
         <tbody>
-         <%= form_with model: @cart_items do |f| %>
-         <tr>
-          <td><%= f.hidden_field :name, :value => "  " %></td> <%# f.hidden_fieldの意味がわからない %>
-          <td><%= f.hidden_field :with_tax_price, :value => "  " %></td>
-          <td>
+         <% @items.each do |item| %>
+          <tr>
+           <td><% item.name %></td>
+           <td><% item.with_tax_price %></td>
+
+          <%= form_with model: @cart_items do |f| %>
+           <td>
               <%= f.select :amount, *[1..10] %>
-              <%= f.submit "変更" ,class: "btn btn-success" %>
+              <%= f.submit "変更" , url: cart_items_path , class: "btn btn-success" %>
           </td>
-          <td><%= f.hidden_field :price, :value => "  " %></td> <%# :price*amountを入れたい %>
+          <td></td>
           <td><%= f.submit "削除する",url: cart_items_path, method: :delete, class: "btn btn-danger" %></td> <%# submit にurlとmethod指定いい？ %>
-         </tr>
+          </tr>
+          <% end %>
+         <% end %>
         </tbody>
        </div>
       </table>
-      
        <div class ="row" >
         <div class = "col-6 text-left">
-         <%= link_to "買い物を続ける" ,items_path, class: "btn btn-primary" %> 
+         <%= link_to "買い物を続ける" ,items_path, class: "btn btn-primary" %>
         </div>
-        <div class = "col-6 text-right">
+        <div class = "col-5">
          <tr>
-          <%= f.label "合計金額" %>
-          <%= f.text_field "小計の合計をいれたい" %> <%# 小計の合計をいれたい %>
+          <td><%= "合計金額" %></td>
+          <td><%= "小計の合計をいれたい total=0?" %></td> <%# 小計の合計をいれたい %>
          </tr>
         </div>
        </div>
        <div class = "row mt-4" >
         <div class = "col mr-4">
-         <%= f.submit "情報入力に進む" ,class: "btn btn-success" %>
+         <%= link_to "情報入力に進む" ,new_order_path ,class: "btn btn-success" %>
         </div>
        </div>
-         <% end %>
+
  </div>
-     

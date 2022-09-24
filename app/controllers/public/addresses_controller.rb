@@ -1,7 +1,7 @@
 class Public::AddressesController < ApplicationController
   def index
     @address = Address.new
-    @addresses = current_customer.addresses #ここにはcurrent_customerの登録してある住所を持ってきたい
+    @addresses = current_customer.addresses #ok ここにはcurrent_customerの登録してある住所を持ってきたい
   end
 
   def create
@@ -12,7 +12,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
-    @address = current_customer(address.id) #ここにはcurrent_customerの登録してある1つの住所を持ってきたい
+    @address = Address.find(params[:id]) #ok ここにはcurrent_customerの登録してある1つの住所を持ってきたい
   end
 
   def update
@@ -24,7 +24,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def destroy
-    address = Addresses.find(params[:id]) #複数形？ current customerいらない？
+    address = Address.find(params[:id]) #複数形？ current customerいらない？
     address.destroy
     redirect_to addresses_path
   end
