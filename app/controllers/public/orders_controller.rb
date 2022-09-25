@@ -56,6 +56,10 @@ class Public::OrdersController < ApplicationController
       render :new
      end
   end
+  
+  def complete
+      
+  end
 
 private
   
