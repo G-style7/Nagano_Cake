@@ -1,7 +1,6 @@
 class Public::CartItemsController < ApplicationController
   def index
     @cart_item = CartItem.new
-    @items = Item.all
     @cart_items= current_customer.cart_items.all
     # カートに入ってる商品の合計金額
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
@@ -15,7 +14,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    @items = Item.find(params[:id])
+    @items = CartItem.find(params[:id])
     if @items.update(cart_item_params)
        redirect_to cart_items_path
     else
@@ -24,7 +23,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
-    cart_item = Item.find(params[:id])
+    cart_item = CartItem.find(params[:id])
     cart_item.destroy
     redirect_to cart_items_path
 
@@ -32,7 +31,7 @@ class Public::CartItemsController < ApplicationController
 
   def destroy_all
     cart_items = CartItem.all
-    cart_items.destroy
+    cart_items.destroy_all # railsのdefaultとなっている書き方
     redirect_to cart_items_path
 
   end

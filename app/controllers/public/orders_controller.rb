@@ -11,8 +11,9 @@ class Public::OrdersController < ApplicationController
   def show
   end
 
-  def confirm　 #注文情報に送るためだけのアクション
+  def confirm  #注文情報に送るためだけのアクション
    @order = Order.new(order_params)
+   @cart_items = current_customer.cart_items #理解できない
 
    if params[:select_address] == "1"
      @order.postal_code = current_customer.postal_code #
@@ -26,6 +27,9 @@ class Public::OrdersController < ApplicationController
    else
      @order = Order.new(order_params) # params[:select_address] == "3"
    end
+  end
+  
+  def create
   end
 
   #. ⬆️⬇️注文機能実装時に登録するデータでもあるためこの時点でストロングパラメーターに登録をし

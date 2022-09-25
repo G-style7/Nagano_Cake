@@ -19,19 +19,19 @@
          </tr>
         </thead>
         <tbody>
-         <% @items.each do |item| %>
+         <% @cart_items.each do |cart_item| %>
           <tr>
-           <td><%= item.name %></td>
-           <td><%= item.with_tax_price %></td>
-           <td><%#= item.cart_item.sum_price %></td>
-          <%= form_with model: @cart_item do |f| %>
+           <td><%= cart_item.item.name %></td>
+           <td><%= cart_item.item.with_tax_price %></td>
+          <%= form_with model: cart_item ,url: cart_item_path(cart_item.id) , method: :patch do |f| %>
            <td>
-              <%= f.select :amount, *[1..10] %>
-              <%= f.submit "変更" , url: cart_items_path , method: :patch, class: "btn btn-success" %>
-          </td>
-          <td><%= f.submit "削除する",url: cart_items_path, method: :delete, class: "btn btn-danger" %></td> <%# submit にurlとmethod指定いい？ %>
-          </tr>
+               <%= f.select :amount, *[1..10] %>
+               <%= f.submit "変更" , class: "btn btn-success" %>
+           </td>
           <% end %>
+          <td><%= cart_item.sum_price %></td>
+          <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger" %></td> <%# submit にurlとmethod指定いい？ %>
+          </tr>
          <% end %>
         </tbody>
        </div>

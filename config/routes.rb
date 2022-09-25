@@ -44,8 +44,9 @@ Rails.application.routes.draw do
     get '/customers/unsubscribe' => 'customers#unsubscribe' #顧客の退会確認画面
     patch '/customers/withdraw' => 'customers#withdraw' #顧客の退会処理(ステータスの更新)
 
-    resources :cart_items ,only:[:index, :update, :create, :destroy]
     delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
+    resources :cart_items ,only:[:index, :update, :create, :destroy]
+
 
     resources :orders ,only:[:new, :index, :show, :create]
     post '/orders/confirm' => 'orders#confirm' #注文情報確認画面
