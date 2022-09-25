@@ -23,7 +23,7 @@
           <tr>
            <td><%= item.name %></td>
            <td><%= item.with_tax_price %></td>
-           <td><%#= item.sum_price %></td>
+           <td><%#= item.cart_item.sum_price %></td>
           <%= form_with model: @cart_item do |f| %>
            <td>
               <%= f.select :amount, *[1..10] %>
