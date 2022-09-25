@@ -29,12 +29,36 @@ class Public::OrdersController < ApplicationController
    end
   end
   
-  def create
+  def create 
+      # Order に情報を保存します
+     cart_items = current_customer.cart_items.all
+     # ログインユーザーのカートアイテムをすべて取り出して cart_items に入れる
+     @order = current_customer.orders.new(order_params)
+     # 渡ってきた値を @order に入れる
+     if @order.save
+        cart_items.each do |cart_item|
+            # 取り出したカートアイテムの数繰り返す
+            # order_item にも一緒にデータを保存する必要があるのでここで保存する
+        order_detail = OrderDetail.new
+        order_detail.item_id = cart_item.item_id
+        order_detail.order_id = @order.id
+        order_detail.amount = cart_item.amount
+        # 購入が完了したらカート情報は削除するのでこちらに保存する
+        order_detail.sum_price = cart_item.item.price #sum_priceは(cart_item.rbだが)呼び出せる
+        # カート情報を削除するので item との紐付けが切れる前に保存します
+        order_detail.save
+      end
+      redirect_to orders_complete_path
+      order_detail.destroy_all
+      # ユーザーに関連するカートのデータ(購入したデータ)をすべて削除する(カートを空にする)
+     else
+      @order = Order.new(order_params)
+      render :new
+     end
   end
 
-  #. ⬆️⬇️注文機能実装時に登録するデータでもあるためこの時点でストロングパラメーターに登録をし
-  #  注文(Order)モデルをnewメソッドで作成した際にデータが入るようにする
 private
+  
 
   def order_params
   params.require(:order).permit(:payment_method, :postal_code, :address, :name) # ここにselect_addressはカラムにないため記述できない

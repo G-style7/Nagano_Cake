@@ -1,51 +1,65 @@
- <div class ="container">
-  <div class ="row" >
-     <div class = "col-8">
-      <h3>注文情報確認</h3>
+  <div class ="container">
+   <div class ="row" >
+      <div class = "col-8">
+       <h3>注文情報確認</h3>
+      </div>
+   </div>
+       <table class = "table" >
+        <div class  "row">
+          <div class = "col" >
+           <thead>
+            <tr>
+             <th>商品名</th>
+             <th>単価（税込）</th>
+             <th>数量</th>
+             <th>小計</th>
+             <th></th>
+            </tr>
+           </thead>
+           <tbody>
+           <% @cart_items.each do |cart_item| %>
+            <tr>
+             <td><%= cart_item.item.name %></td><!-- 商品名 -->
+             <td><%= cart_item.item.with_tax_price %></td>　<!-- 金額 -->
+             <td><%= cart_item.amount %></td> <!-- 個数 -->
+             <td><%= cart_item.sum_price %></td><!-- 小計 -->
+            </tr>
+           </tbody>
+           <% end %>
+          </div>
+          <div class = "col" >
+            <tr>
+             <th>送料</th>
+             <td><%= @order.shipping_cost %></td>
+            </tr>
+            <tr>
+             <th>商品合計</th>
+             <td>1760</td>
+            </tr>
+            <tr>
+             <th>請求金額</th>
+             <td>2560</td>
+            </tr>
+          </div>
+        </div>
+       </table>
+   <div class = "row mt-4" >
+    <h5> 支払い方法 </h5>
+     <div class = "col-6 mr-4">
+      <%= @order.payment_method %>
      </div>
-  </div>
-      <table class = "table" >
-       <div class  "row">
-         <div class = "col-8" >
-          <thead>
-           <tr>
-            <th>商品名</th>
-            <th>単価（税込）</th>
-            <th>数量</th>
-            <th>小計</th>
-            <th></th>
-           </tr>
-          </thead>
-          <tbody>
-          <% @cart_items.each do |cart_item| %>
-           <tr>
-            <td><%= cart_item.item.name %></td>
-            <td><%= cart_item.item.with_tax_price %></td>
-            <td><%= cart_item.amount %></td>
-            <td><%= cart_item.sum_price %></td>
-           </tr>
-          </tbody>
-          <% end %>
-         </div>
-         <div class = "col" >
-           <tr>
-            <th>送料</th>
-            <td>800</td>
-           </tr>
-           <tr>
-            <th>商品合計</th>
-            <td>1760</td>
-           </tr>
-           <tr>
-            <th>請求金額</th>
-            <td>2560</td>
-           </tr>
-         </div>
-       </div>
-      </table>
-          
-          <td><%#= link_to "注文を確定する",                    , method: :post, class: "btn btn-success" %></td> <%# submit にurlとmethod指定いい？ %>
-          </tr>
-        
-       
-      
+   </div>
+   <div class ="row mt-4" >
+    <h5> お届け先 </h5>
+     <%#= @order.address.address_display %>
+     <div class = "col-6 mr-4">
+     </div>
+   </div>
+   <div class = "row center">
+    <%= form_with model: @order, url: orders_path, local: true do |f| %> <%# local: true とは %>
+    <%= f.submit "注文を確定する",class: "btn btn-success" %>
+    <% end %>
+   </div>
+
+
+
