@@ -11,8 +11,9 @@ class Order < ApplicationRecord
   def address_display
   '〒' + postal_code + ' ' + address + ' ' + name
   end
-
-
-
+  
+  def payment
+    shipping_cost + total_payment
+  end
 
 end

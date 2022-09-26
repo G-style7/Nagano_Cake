@@ -22,7 +22,6 @@
       </table>
      </div>
     </div>
-
     <table class = "table" >
         <div class  "row">
           <div class = "col" >
@@ -35,17 +34,18 @@
              <th>製作ステータス</th>
             </tr>
            </thead>
-           <tbody>
            <% @cart_items.each do |cart_item| %>
+           <tbody>
             <tr>
              <td><%= cart_item.item.name %></td><!-- 商品名 -->
-             <td><%= cart_item.item.with_tax_price %></td>　<!-- 金額 -->
+             <td><%= cart_item.item.with_tax_price %></td> <!-- 金額 -->
              <td><%= cart_item.amount %></td> <!-- 個数 -->
              <td><%= cart_item.sum_price %></td><!-- 小計 -->
               <%= form_with model: @order_detail ,url: admin_path ,method: :patch do |f| %>
              <td>
-              <%= f.select :making_status,[["製作不可",0],["製作待ち"1],["製作中"2],["製作完了"3]] %>
+              <%= f.select :making_status_i18n,[["製作不可",0],["製作待ち"1],["製作中"2],["製作完了"3]] %>
               <%= f.submit "更新" ,class: "btn btn-success" %>
+              <% end %>
              </td>
             </tr>
            </tbody>
