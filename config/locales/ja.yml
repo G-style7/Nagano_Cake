@@ -13,6 +13,6 @@ ja:
       order_detail:
         making_status:
           no_make: "製作不可"
-          make_wait: "製作不可"
+          make_wait: "製作待ち"
           maiking: "製作中"
           make_fin: "製作完了"

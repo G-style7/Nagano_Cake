@@ -6,14 +6,21 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders.all
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   def confirm  #注文情報に送るためだけのアクション
    @order = Order.new(order_params)
    @cart_items = current_customer.cart_items #理解できない
+   @order.shipping_cost = 800
+   @sum = 0
+    @cart_items.each do |cart_item|
+      @sum = @sum + cart_item.sum_price
+  end
 
    if params[:select_address] == "1"
      @order.postal_code = current_customer.postal_code #
@@ -28,8 +35,8 @@ class Public::OrdersController < ApplicationController
      @order = Order.new(order_params) # params[:select_address] == "3"
    end
   end
-  
-  def create 
+
+  def create
       # Order に情報を保存します
      cart_items = current_customer.cart_items.all
      # ログインユーザーのカートアイテムをすべて取り出して cart_items に入れる
@@ -43,28 +50,40 @@ class Public::OrdersController < ApplicationController
         order_detail.item_id = cart_item.item_id
         order_detail.order_id = @order.id
         order_detail.amount = cart_item.amount
+        order_detail.price = cart_item.item.price
+        order_detail.making_status = "make_wait"
         # 購入が完了したらカート情報は削除するのでこちらに保存する
-        order_detail.sum_price = cart_item.item.price #sum_priceは(cart_item.rbだが)呼び出せる
         # カート情報を削除するので item との紐付けが切れる前に保存します
         order_detail.save
       end
+      cart_items.destroy_all
       redirect_to orders_complete_path
-      order_detail.destroy_all
+
       # ユーザーに関連するカートのデータ(購入したデータ)をすべて削除する(カートを空にする)
      else
       @order = Order.new(order_params)
       render :new
      end
   end
-  
+
   def complete
-      
+
   end
 
 private
-  
+
 
   def order_params
-  params.require(:order).permit(:payment_method, :postal_code, :address, :name) # ここにselect_addressはカラムにないため記述できない
+  params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment, :status ) # ここにselect_addressはカラムにないため記述できない
   end
 end
+
+# order_detail = OrderDetail.new
+#         order_detail.item_id = 1
+#         order_detail.order_id = 1
+#         order_detail.amount = 1
+#         order_detail.price = 1
+#         order_detail.making_status = "make_wait"
+#         # 購入が完了したらカート情報は削除するのでこちらに保存する
+#         # カート情報を削除するので item との紐付けが切れる前に保存します
+#         order_detail.save
