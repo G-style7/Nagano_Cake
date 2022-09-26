@@ -20,7 +20,8 @@
         <td class="align-middle"><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
         <td class="align-middle"><%= order.address_display %></td>
         <td class="align-middle">
-           <% order.order_details.each do |order_detail| %>
+           <% order.order_details.each do |order_detail| %> <%# itemのnameを記述したいが今回はitemモデルとorderモデルはアソシエーションできていないため、間接的に商品id辿ってorder_detailから持ってきている %>
+           
             <%= order_detail.item.name %><br>
            <% end %>
         </td>

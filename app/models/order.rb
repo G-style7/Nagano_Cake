@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :customer
   has_many :order_details, dependent: :destroy
-  
+
   attribute :shipping_cost, :integer, default: 800
 
 
@@ -11,9 +11,13 @@ class Order < ApplicationRecord
   def address_display
   '〒' + postal_code + ' ' + address + ' ' + name
   end
-  
+
   def payment
     shipping_cost + total_payment
+  end
+
+  def full_name
+    customer.last_name + customer.first_name
   end
 
 end
