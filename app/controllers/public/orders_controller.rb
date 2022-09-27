@@ -7,7 +7,6 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = current_customer.orders.all # 複数のorderがあるためordersになる
-    @item_
   end
 
   def show

@@ -1,26 +1,30 @@
    <div class ="container">
      <div class ="row" >
-      <h1>注文履歴詳細(admin)</h1>
+      <h4>注文履歴詳細(admin)</h4>
+      </div>
       <table class = "table" >
-       <div class ="col">
+       <div class ="row">
         <tbody>
         <tr>
-          <td><%= "購入者" %></td>
+          <th><%= "購入者" %></th>
           <td><%= link_to @order.full_name ,admin_customer_path(@order.id) %></td>
-          <td><%= @order.created_at %></td>
-          <td><%= @order.address %></td> <%# amountはどこからもってくる？ %>
-          <td><%= @order.payment_method %></td>
+          <th><%= "注文日" %></th>
+          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+          <th><%= "配送先" %></th>
+          <td><%= @order.address_display %></td> <%# amountはどこからもってくる？ %>
+          <th><%= "支払い方法" %></th>
+          <td><%= @order.payment_method_i18n %></td>
+          <th><%= "注文ステータス" %></th>
           <td>
-           <%#= form_with model: @order, url: admins_order_path, method: :patch ,local: true, class: "form-row" do |f| %>
-            <%#= f.select :status, Order.statuses.keys, class: "order_status" %>
-            <%#= f.submit "更新" %>
+           <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch ,local: true, class: "form-row" do |f| %>
+            <%= f.select :status, Order.statuses_i18n.invert, class: "order_status" %>
+            <%= f.submit "更新" %>
           </td>
         </tr>
-           <%# end %>
+           <% end %>
         </tbody>
        </div>
       </table>
-     </div>
     <table class = "table" >
         <div class = "row">
           <div class = "col" >
@@ -33,22 +37,23 @@
              <th>製作ステータス</th>
             </tr>
            </thead>
-           <%# @cart_items.each do |cart_item| %>
+           <% @order_detail.each do |order_detail| %>
            <tbody>
             <tr>
-             <td><%#= cart_item.item.name %></td><!-- 商品名 -->
-             <td><%#= cart_item.item.with_tax_price %></td> <!-- 金額 -->
-             <td><%#= cart_item.amount %></td> <!-- 個数 -->
-             <td><%#= cart_item.sum_price %></td><!-- 小計 -->
-              <%#= form_with model: @order_detail ,url: admin_path ,method: :patch do |f| %>
+             <td><%= order_detail.item.name %></td><!-- 商品名 -->
+             <td><%= order_detail.item.with_tax_price %></td> <!-- 金額 -->
+             <td><%= order_detail.amount %></td> <!-- 個数 -->
+             <td><%= order_detail.sum_price %></td><!-- 小計 -->
+              <%# urlのidが二つある場合（ネストしているため下記のような書き方になる %>
+              <%= form_with model: [@order,order_detail] ,url: admin_path(order_detail.id) ,method: :patch do |f| %>
              <td>
-              <%#= f.select :making_status_i18n,[["製作不可",0],["製作待ち"1],["製作中"2],["製作完了"3]] %>
-              <%#= f.submit "更新" ,class: "btn btn-success" %>
-              <%# end %>
+              <%= f.select :making_status_i18n,[["製作不可",0],["製作待ち",1],["製作中",2],["製作完了",3]] %>
+              <%= f.submit "更新" ,class: "btn btn-success" %>
+              <% end %>
              </td>
             </tr>
            </tbody>
-           <%# end %>
+           <% end %>
           </div>
         </div>
     </table>
