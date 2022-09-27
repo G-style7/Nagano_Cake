@@ -19,7 +19,7 @@
          <div class = "col ">
           <%= link_to "商品一覧", admin_items_path , class: "btn btn-outline-secondary mr-3" %>
           <%= link_to "会員一覧", admin_customers_path , class: "btn btn-outline-secondary mr-3" %>
-          <%= link_to "注文履歴一覧", orders_path , class: "btn btn-outline-secondary mr-3" %>
+          <%= link_to "注文履歴一覧", admin_root_path , class: "btn btn-outline-secondary mr-3" %>
           <%= link_to "ジャンル一覧", admin_genres_path , class: "btn btn-outline-secondary mr-3" %>
           <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %>
          <div class ="input-group col-6 ml-auto mt-3"> <%# なぜautoだと右よせになる？ %>

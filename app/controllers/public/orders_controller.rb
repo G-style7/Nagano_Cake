@@ -1,8 +1,6 @@
 class Public::OrdersController < ApplicationController
   def new
     @order = Order.new
-
-
   end
 
   def index
@@ -11,6 +9,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_detail = @order.order_details
   end
 
   def confirm  #注文情報に送るためだけのアクション
@@ -71,19 +70,7 @@ class Public::OrdersController < ApplicationController
   end
 
 private
-
-
   def order_params
   params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment, :status ) # ここにselect_addressはカラムにないため記述できない
   end
 end
-
-# order_detail = OrderDetail.new
-#         order_detail.item_id = 1
-#         order_detail.order_id = 1
-#         order_detail.amount = 1
-#         order_detail.price = 1
-#         order_detail.making_status = "make_wait"
-#         # 購入が完了したらカート情報は削除するのでこちらに保存する
-#         # カート情報を削除するので item との紐付けが切れる前に保存します
-#         order_detail.save
