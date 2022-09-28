@@ -6,7 +6,7 @@ ja:
           transfer: "銀行振込"
         status:
           waiting_payment: "入金待ち"
-          payment_confirmation: "入金確認中"
+          payment_confirmation: "入金確認"
           production: "製作中"
           preparing_to_ship: "発送準備中"
           sent: "発送済み"
@@ -14,5 +14,5 @@ ja:
         making_status:
           no_make: "製作不可"
           make_wait: "製作待ち"
-          maiking: "製作中"
+          making: "製作中"
           make_fin: "製作完了"

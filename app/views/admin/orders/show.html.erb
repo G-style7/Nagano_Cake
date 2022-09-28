@@ -44,10 +44,11 @@
              <td><%= order_detail.item.with_tax_price %>円</td> <!-- 金額 -->
              <td><%= order_detail.amount %></td> <!-- 個数 -->
              <td><%= order_detail.sum_price %>円</td><!-- 小計 -->
-              <%# urlのidが二つある場合（ネストしているため下記のような書き方になる %>
-              <%= form_with  url: admin_path(order_detail.id) ,method: :patch do |f| %> <%# model: [@order,order_detail] %>
              <td>
-              <%= f.select :making_status_i18n,[["製作不可",0],["製作待ち",1],["製作中",2],["製作完了",3]] %>
+              <%# urlのidが二つある場合（ネストしているため下記のような書き方になる %>
+              <%= form_with  model: order_detail ,url: admin_path(order_detail.id) ,method: :patch do |f| %> <%# model: [@order,order_detail] %>
+              <%#= f.select :making_status,[["製作不可",0],["製作待ち",1],["製作中",2],["製作完了",3]] %>
+              <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert, class: "order_detail_status" %>
               <%= f.submit "更新" ,class: "btn btn-success" %>
               <% end %>
              </td>
