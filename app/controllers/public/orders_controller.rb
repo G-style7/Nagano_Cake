@@ -1,4 +1,7 @@
 class Public::OrdersController < ApplicationController
+
+   before_action :check_cart_item, only: [:new]
+
   def new
     @order = Order.new
   end
@@ -72,5 +75,12 @@ class Public::OrdersController < ApplicationController
 private
   def order_params
   params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment, :status ) # ここにselect_addressはカラムにないため記述できない
+  end
+
+  def check_cart_item
+    @cart_items = current_customer.cart_items
+    if @cart_items.empty? #空か確認できるメソッド
+       redirect_to items_path
+    end
   end
 end

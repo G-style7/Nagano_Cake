@@ -4,6 +4,7 @@ class Public::SessionsController < Devise::SessionsController
   #before_action :configure_permitted_parameters, if: :devise_controller? 郵便番号等ログインに必要なデータの許可
   # if is_deleted true && !false
   # else
+  before_action :authenticate_customer!, except: [:top, :index, :show, :about]
 
   before_action :customer_state, only: [:create]
 
@@ -12,7 +13,7 @@ class Public::SessionsController < Devise::SessionsController
   end
 
   def after_sign_out_path_for(resource) # 顧客ログイン画面へ遷移
-    new_customer_session_path
+    root_path
   end
 
   #退会した場合はログインできないメソッドを作成

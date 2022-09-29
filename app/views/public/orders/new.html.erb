@@ -12,11 +12,11 @@
       <h3><%= f.label "支払方法",class: "" %></h3><br>  <%# 文字サイズを変えたい %>
        <%= f.radio_button :payment_method, "credit_card" %>
        <%= f.label :payment_method,"クレジットカード" %><br>
-       <%= f.radio_button :payment_method, "transfer" %>
+       <%= f.radio_button :payment_method, "transfer", required: :ture %> <%# requiredは入力必須 %>
        <%= f.label :payment_method,"銀行振込" %><br>
 
       <h3><%= f.label "お届け先" %></h3><br>
-       <%= radio_button_tag :select_address, "1" %> <%# radio_button_tagでもradio_button(form_withの外側で記述する場合)でも同じ %>
+       <%= radio_button_tag :select_address, "1",required: :ture %> <%# radio_button_tagでもradio_button(form_withの外側で記述する場合)でも同じ %>
        <%= f.label :address, "ご自身の住所" %><br>
        <%= current_customer.address %><br> <%#もしくはコントローラーにメソッド定義する（@customer = current_customer）%>
 

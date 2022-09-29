@@ -46,7 +46,7 @@
              <td><%= order_detail.sum_price %>円</td><!-- 小計 -->
              <td>
               <%# urlのidが二つある場合（ネストしているため下記のような書き方になる %>
-              <%= form_with  model: order_detail ,url: admin_path(order_detail.id) ,method: :patch do |f| %> <%# model: [@order,order_detail] %>
+              <%= form_with  model: order_detail ,url: admin_path(@order.id,order_detail.id) ,method: :patch do |f| %> <%# model: [@order,order_detail] %> <%# ネストしているための書き方(@order.id,order_detail.id) %>
               <%#= f.select :making_status,[["製作不可",0],["製作待ち",1],["製作中",2],["製作完了",3]] %>
               <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert, class: "order_detail_status" %>
               <%= f.submit "更新" ,class: "btn btn-success" %>
