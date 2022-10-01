@@ -1,3 +1,14 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+ .top-image{
+  background-image: url('../../assets/images/no_image.jpg');
+  background-size: cover;
+  background-position: center;
+  // height: 150px;
+  //background: no-repeat image-url("no_image.jpg");
+ }
+
+ .genre-height{
+  height: 200px;
+ }

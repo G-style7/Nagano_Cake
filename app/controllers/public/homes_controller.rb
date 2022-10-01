@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
   def top
-    @items = Item.all
-    @items = Item.limit(5)
+    @items = Item.page(params[:page])
+    @items = Item.limit(4)
   end
 
   def about
