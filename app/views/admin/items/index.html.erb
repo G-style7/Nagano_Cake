@@ -1,46 +1,52 @@
- <div class ="container">
-   <div class ="row" >
-
-
-    <h1>商品一覧</h1>
-     <h3><%= Item.count %>件</h3>
-     <%= link_to new_admin_item_path, class: 'btn btn-default' do %>
-      <i class="fa fa-arrow-up"></i>
-     <% end %>
-
-    <table class = "table" >
-     <div class "col">
-      <thead>
-       <tr>
-        <th>商品ID</th>
-        <th>商品名</th>
-        <th>税抜価格</th>
-        <th>ジャンル</th>
-        <th>ステータス</th>
-       </tr>
-      </thead>
-      <tbody>
-       <% @item.each do |item| %>
-       <tr>
-        <td><%= item.id %></td>
-        <td><%=link_to item.name ,admin_item_path(item.id) %></td>
-        <td><%= item.price %>円</td>
-        <td>
-         <%#= Genre.find(item.genre_id).name %> <%# idを使ってジャンルを探す %>
-         <%= item.genre.name %> <%# リレーションを使ったやり方 %>
-        </td>
-        <td>
-         <% if item.is_active %>
-          <p>販売中</p>
-         <% else %>
-          <p>販売停止中</p>
-         <% end %>
-        </td>
-       </tr>
-       <% end %>
-
-      </tbody>
+  <div class ="container">
+    <div class ="row mb-3" >
+     <div class = "col-4">
+      <h1>商品一覧</h1>
      </div>
-    </table>
-   </div>
-  </div>
+     <div class ="col-8 text-right" >
+      <%= link_to new_admin_item_path, class: 'btn btn-default' do %>
+       <i class="fa fa-arrow-up"></i>
+      <% end %>
+     </div>
+    </div>
+     <div class = "row">
+     <table class = "table" >
+      <div class "col">
+       <thead>
+        <tr>
+         <th>商品ID</th>
+         <th>商品名</th>
+         <th>税抜価格</th>
+         <th>ジャンル</th>
+         <th>ステータス</th>
+        </tr>
+       </thead>
+       <tbody>
+        <% @item.each do |item| %>
+        <tr>
+         <td><%= item.id %></td>
+         <td><u><%=link_to item.name ,admin_item_path(item.id) %></u></td>
+         <td><%= item.price %>円</td>
+         <td>
+          <%#= Genre.find(item.genre_id).name %> <%# idを使ってジャンルを探す %>
+          <%= item.genre.name %> <%# リレーションを使ったやり方 %>
+         </td>
+         <td>
+          <% if item.is_active %>
+           <p class ="text-success font-weight-bold">販売中</p>
+          <% else %>
+           <p class ="text-secondary font-weight-bold">販売停止中</p>
+          <% end %>
+         </td>
+        </tr>
+        <% end %>
+       </tbody>
+      </div>
+     </table>
+     </div>
+    <div class ="row">
+     <div class ="mx-auto">
+    <%= paginate @item %>
+     </div>
+    </div>
+ </div>

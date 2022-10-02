@@ -1,37 +1,51 @@
-<div class = "container" >
- <div class = "row" >
-  <div class ="col-auto" >
-   <h1>商品新規登録</h1>
-  </div>
-     <%#= form_with model:[:admin,@item], method: :post do |f| %>
-      <%= form_with model: @item ,url: admin_items_path,  method: :post do |f| %>
-
-      <%= f.label "商品画像" %>
-      <%= f.file_field :image, class: "form-control-file" %><br> <%# imageはカラム名（has_one_attached）と同じ %>
-
-      <%= f.label "商品名" %><br>
-      <%= f.text_field :name, class: "form-control item_name", :placeholder => "商品名" %><br>
-
-      <%= f.label "商品説明" %><br>
-      <%= f.text_area :introduction, class: "form-control item_explanation" , :placeholder => "ここに説明文を記述します" %><br> <%# explanation(説明) %>
-
-
-      <%= f.label "ジャンル" %><br>
-      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %><br>
-      <%#= f.select :genre_id, ['ケーキ','プリン','焼き菓子','キャンディ'], {include_blank: '--選択して下さい--'} %>
-
-      <%= f.label "税抜価格" %><br>
-      <%= f.text_field :price , class: "form-controll price" , :placeholder => "1000" %>円<br>
-
-      <%= f.label '販売ステータス' %><br>
-      <%= f.label "is_active",'販売中', value: true %>
-      <%= f.radio_button :is_active, 'true' %>
-      <%= f.label "is_active",'販売停止中', value: false %>
-      <%= f.radio_button :is_active, 'false' %><br>
-      <%= button_to "新規登録" ,admin_items_path, method: :post ,class: "btn btn-success" %>
+ <div class = "container" >
+  <div class = "row" >
+   <div class ="col-auto" >
+    <h1>商品新規登録</h1>
    </div>
-
-
-  <% end %>
+  </div>
+  <div class = "row mt-5">
+   <div class = "mx-auto">
+     <%#= form_with model:[:admin,@item], method: :post do |f| %>
+     <table class ="table">
+        <%= form_with model: @item ,url: admin_items_path,  method: :post do |f| %>
+       <tr>
+        <td><%= f.label "商品画像" %></td>
+        <td><%= f.file_field :image, class: "form-control-file" %></td> <%# imageはカラム名（has_one_attached）と同じ %>
+       </tr>
+       <tr>
+        <td><%= f.label "商品名" %></td>
+        <td><%= f.text_field :name, class: "form-control item_name", :placeholder => "商品名" %></td>
+       </tr>
+        <tr>
+         <td><%= f.label "商品説明" %></td>
+         <td><%= f.text_area :introduction, class: "form-control item_explanation" , :placeholder => "ここに説明文を記述します" %></td> <%# explanation(説明) %>
+       </tr>
+       <tr>
+        <td><%= f.label "ジャンル" %></td>
+        <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {include_blank: '--選択して下さい--'} %></td>
+       </tr>
+        <%#= f.select :genre_id, ['ケーキ','プリン','焼き菓子','キャンディ'], {include_blank: '--選択して下さい--'} %>
+       <tr>
+        <td><%= f.label "税抜価格" %></td>
+        <td><%= f.text_field :price , class: "form-controll price" , :placeholder => "1000" %>円</td>
+       </tr>
+       <tr>
+        <td><%= f.label '販売ステータス' %></td>
+        <td>
+         <%= f.label "is_active",'販売中', value: true %>
+         <%= f.radio_button :is_active, 'true' %>
+         <%= f.label "is_active",'販売停止中', value: false %>
+         <%= f.radio_button :is_active, 'false' %>
+        </td>
+       </tr>
+     </table>
+       <div class ="row">
+        <div class ="mx-auto">
+         <%= button_to "新規登録" ,admin_items_path, method: :post ,class: "btn btn-success" %>
+        </div>
+       </div>
+   </div>
+  </div>
+        <% end %>
  </div>
-</div>

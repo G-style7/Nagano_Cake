@@ -1,40 +1,52 @@
  <div class = "container" >
   <div class = "row">
    <h1>商品詳細</h1>
+  </div>
+  <div class = "row">
+     <div class ="col-4 d-flex align-items-center justify-content-center">
+          <%= link_to admin_item_path(@item.id) do %>
+          <%= image_tag @item.get_image(100,100) %>
+          <% end %>
+     </div>
+  <div class ="col-8">
     <table class='table'>
      <tr>
-        <td>
-          <%= link_to admin_item_path(@item.id) do %>
-          <%= image_tag @item.get_image(100,100) %><br>
-          <% end %>
-        </td>
-        <td>
-          <%= "商品名" %>
-          <%= @item.name %><br>
-
-          <%= "商品説明" %>
-          <%= @item.introduction %><br>
-
-          <%= "ジャンル" %>
-          <%= @item.genre.name %><br>
-
+      <td><%= "商品名" %></td>
+      <td><%= @item.name %></td>
+     </tr>
+     <tr>
+      <td><%= "商品説明" %></td>
+      <td><%= @item.introduction %></td>
+     </tr>
+     <tr>
+      <td><%= "ジャンル" %></td>
+      <td><%= @item.genre.name %></td>
+     </tr>
+     <tr>
+      <td>
           <%= "税込価格" %><br>
-          <%= @item.with_tax_price %>円<br>
           <%= "（税抜価格）" %>
-          (<%= @item.price %>)円<br>
-
-          <%= "販売ステータス" %>
-          <% if @item.is_active %>
-           <p>販売中</p>
-          <% else %>
-           <p>販売停止中</p>,
-          <% end %>
-        </td>
+      </td>
+      <td>
+          <%= @item.with_tax_price %>
+          (<%= @item.price %>)円
+      </td>
+     </tr>
+     <tr>
+      <td><%= "販売ステータス" %></td>
+      <td>
+       <% if @item.is_active %>
+        <p class ="text-success font-weight-bold">販売中</p>
+       <% else %>
+        <p class ="text-secondary font-weight-bold"><p>販売停止中</p>
+       <% end %>
+      </td>
      </tr>
     </table>
-    <div class = "col text-center" >
-          <%= link_to "編集する" , edit_admin_item_path(@item.id) ,class: "btn btn-success" %>
     </div>
-
   </div>
+    <div class = "col text-center" >
+     <%= link_to "編集する" , edit_admin_item_path(@item.id) ,class: "btn btn-success btn-lg" %>
+    </div>
  </div>
+
