@@ -1,18 +1,18 @@
   <div class = "container">
    <div class = "row">
     <div class ="col-2 bg-secondary">
-     <h2 class = "content text-center">マイページ</h2>
+     <h2 class = "content text-center mt-2">マイページ</h2>
     </div>
    </div>
-  </div>
-
-  <div class = "row">
-   <div class = "col ml-5">
-    <h3>登録情報</h3>
+  <div class = "row mt-3">
+    <h4>登録情報</h4>
+    <div class = "col ml-5">
     <%= link_to "編集する" ,customers_information_edit_path ,class: "btn btn-success" %>
    </div>
   </div>
-     <table class = "col-4 text-center" >
+   <div class ="row mt-3">
+    <div class ="col-8">
+     <table class = "table table-bordered text-left" >
       <tbody>
        <tr>
          <td><%= "氏名" %></td>
@@ -40,17 +40,22 @@
        </tr>
       </tbody>
      </table>
-
-     <div class = "row">
-      <div class = "col ml-4">
-        <h3>配送先</h3>
-         <%= link_to "一覧を見る" ,addresses_path ,class: "btn btn-primary" %>
-      </div>
+    </div>
+   </div>
+    <div class = "row">
+     <div class="col-2">
+      <h3>配送先</h3>
      </div>
-     <div class = "row">
-      <div class = "col ml-4">
-        <h3>注文履歴</h3>
-         <%= link_to "一覧を見る" ,orders_path , class: "btn btn-primary" %>
-      </div>
+     <div class = "col-3">
+      <%= link_to "一覧を見る" ,addresses_path ,class: "btn btn-primary" %>
      </div>
-
+    </div>
+    <div class ="row">
+     <div class="col-2">
+      <h3>注文履歴</h3>
+     </div>
+     <div class ="col-3">
+      <%= link_to "一覧を見る" ,orders_path , class: "btn btn-primary" %>
+     </div>
+    </div>
+ </div>
