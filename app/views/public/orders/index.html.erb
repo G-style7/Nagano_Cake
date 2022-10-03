@@ -1,9 +1,10 @@
 <div class ="container">
-   <div class ="row" >
-
-    <h1>注文履歴一覧</h1>
-    <table class = "table" >
-     <div class "col">
+ <div class ="row mt-3" >
+  <h1>注文履歴一覧</h1>
+ </div>
+   <div class="row mt-3">
+    <div class "col">
+     <table class = "table table-bordered">
       <thead>
        <tr>
         <th>注文日</th>
@@ -17,12 +18,11 @@
       <tbody>
        <% @orders.each do |order| %>
        <tr>
-        <td class="align-middle"><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+        <td class="align-middle"><%= order.created_at.strftime('%Y/%m/%d') %></td>
         <td class="align-middle"><%= order.address_display %></td>
         <td class="align-middle">
            <% order.order_details.each do |order_detail| %> <%# itemのnameを記述したいが今回はitemモデルとorderモデルはアソシエーションできていないため、間接的に商品id辿ってorder_detailから持ってきている %>
-           
-            <%= order_detail.item.name %><br>
+            <%= order_detail.item.name %>
            <% end %>
         </td>
         <td class="align-middle"><%= order.payment %>円</td>
@@ -31,7 +31,8 @@
        </tr>
        <% end %>
       </tbody>
-     </div>
-    </table>
+     </table>
+    </div>
    </div>
   </div>
+ </div>

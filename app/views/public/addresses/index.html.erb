@@ -1,21 +1,29 @@
 <div class ="container">
-   <div class ="row" >
-
-
-    <h1>配送先登録/一覧</h1>
-     <%= form_with model: @address, url: addresses_path ,method: :post do |f| %>　<%# method: :post はなくてもよい %>
-      <%= f.label "郵便番号（ハイフンなし）" %>
-      <%= f.text_field :postal_code ,class: "form-control" %><br>
-
-      <%= f.label "住所" %>
-      <%= f.text_field :address ,class: "form-control" %>
-
-      <%= f.label "宛名" %>
-      <%= f.text_field :name ,class: "form-control" %>
-      <%= f.submit "新規登録" ,class: "btn btn-success" %>
-     <% end %>
-
-    <table class = "table" >
+   <div class ="row mt-3" >
+    <h3 class ="bg-light">配送先登録/一覧</h3>
+   </div>
+   <div class ="row">
+    <div class ="col-7">
+     <table class ="table">
+       <%= form_with model: @address, url: addresses_path ,method: :post do |f| %>　<%# method: :post はなくてもよい %>
+     <tr>
+      <td><%= f.label "郵便番号（ハイフンなし）" %></td>
+      <td><%= f.text_field :postal_code ,class: "form-control" %></td>
+     </tr>
+     <tr>
+      <td><%= f.label "住所" %></td>
+      <td><%= f.text_field :address ,class: "form-control" %></td>
+     </tr>
+     <tr>
+       <td><%= f.label "宛名" %></td>
+       <td><%= f.text_field :name ,class: "form-control" %></td>
+       <td><%= f.submit "新規登録" ,class: "btn btn-success" %></td>
+     </tr>
+       <% end %>
+     </table>
+    </div>
+   </div>
+    <table class = "table table-bordered">
      <div class  "col">
       <thead>
        <tr>
@@ -33,13 +41,10 @@
         <td><%= address.name %></td>
         <td>
          <%= link_to "編集する" ,edit_address_path(address.id) ,class: "btn btn-success" %> <%# (address.id)の理由 %>
-        </td>
-        <td>
-         <%= link_to "削除する" ,address_path(address.id), method: :delete ,class: "btn btn-danger" %>
+         <%= link_to "削除する" ,address_path(address.id), method: :delete ,class: "ml-3 btn btn-danger" %>
         </td>
        </tr>
        <% end %>
-
       </tbody>
      </div>
     </table>
