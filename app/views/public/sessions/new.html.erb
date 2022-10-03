@@ -5,24 +5,29 @@
   <div class ="col-3 mb-4 bg-light">
     <p class = "text-center">会員の方はこちらからログイン</p>
   </div>
-   <table class= "table mt-3">
-    <tbody>
-      <%= form_with model: @customer, url: customer_session_path do |f| %> <%# @public or @customer %>
-        <tr>
-         <td><%= f.label :メールアドレス %></td>
-         <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-        </tr>
-        <tr>
-         <td><%= f.label :パスワード %></td>
-         <td><%= f.password_field :password, autocomplete: "current-password" %></td>
-        </tr>
-        <div class ="col col-3 mt-3">
-         <td></td>
-         <td><%= f.submit "ログイン",class: "btn-block btn btn-primary" %></td>
-        </div>
-        <% end %>
-    </tbody>
-   </table>
+    <div class ="row">
+     <div class ="col-8 mx-auto">
+      <table class= "table mt-3">
+       <tbody>
+         <%= form_with model: @customer, url: customer_session_path do |f| %> <%# @public or @customer %>
+           <tr>
+            <td><%= f.label :メールアドレス %></td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+           </tr>
+           <tr>
+            <td><%= f.label :パスワード %></td>
+            <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+           </tr>
+       </tbody>
+      </table>
+     </div>
+    </div>
+     <div class ="row">
+      <div class ="col-3 mx-auto">
+        <%= f.submit "ログイン",class: "btn-block btn btn-primary" %>
+      </div>
+     </div>
+         <% end %>
      <div class ="col-4 mb-4 bg-light">
       <p class = "text-center">会員登録がお済みでない方</p>
      </div>

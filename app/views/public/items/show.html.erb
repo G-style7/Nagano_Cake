@@ -1,25 +1,25 @@
   <div class = "container">
-    <div class = "row">
-     <div class ="col-2 mr-3 bg-secondary">
-       <%= "ジャンル検索" %>
-     </div>
-       <div class = "col mr-3 bg-secondary">
-         <%= image_tag @item.get_image(100,100) %>
-       </div>
-       <div class ="col mr-3 bg-info">
-        <%= @item.name %><br>
-        <%= @item.introduction %><br>
-        ¥<%= @item.with_tax_price %>(税込)
-       </div>
+   <div class = "row">
+    <div class ="col-2 mr-3 bg-secondary">
+     <p class="text-center">ジャンル検索</p>
     </div>
-       <div class ="col mt-4 ">
+    <div class = "col mr-3 bg-secondary d-flex align-items-center text-center justify-content-center">
+      <%= image_tag @item.get_image(100,100) %>
+    </div>
+    <div class ="col mr-3 bg-info">
+     <h4><%= @item.name %></h4><br>
+     <%= @item.introduction %><br>
+     <p class ="font-weight-bold">¥<%= @item.with_tax_price %>(税込)</p>
+     <div class ="row">
+     <div class ="col mt-4 text-left ">
         <%= form_with model: @cart_item ,url: cart_items_path, method: :post do |f| %>
         <%= f.hidden_field :item_id, :value => @item.id %> <%# valueは送りたい情報で今回は1つのアイテムのIDを送りたいから hiddenはデータは送りたいがviewに表示させないもの%>
         <%= f.select :amount, *[1..10], {include_blank: '個数選択'}, class: 'sample' %>
         <%= f.submit "カートに入れる" ,class: "btn btn-success" %>
         <% end %>
-       </div>
-
      </div>
+    </div>
+    </div>
    </div>
+    
   </div>
