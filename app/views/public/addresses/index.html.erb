@@ -4,8 +4,8 @@
    </div>
    <div class ="row">
     <div class ="col-7">
+     <%= form_with model: @address, url: addresses_path ,method: :post do |f| %>　<%# method: :post はなくてもよい %>
      <table class ="table">
-       <%= form_with model: @address, url: addresses_path ,method: :post do |f| %>　<%# method: :post はなくてもよい %>
      <tr>
       <td><%= f.label "郵便番号（ハイフンなし）" %></td>
       <td><%= f.text_field :postal_code ,class: "form-control" %></td>
@@ -19,12 +19,12 @@
        <td><%= f.text_field :name ,class: "form-control" %></td>
        <td><%= f.submit "新規登録" ,class: "btn btn-success" %></td>
      </tr>
-       <% end %>
      </table>
+     <% end %>
     </div>
    </div>
-    <table class = "table table-bordered">
-     <div class  "col">
+    <div class  "col">
+     <table class = "table table-bordered">
       <thead>
        <tr>
         <th>郵便番号</th>
@@ -46,7 +46,7 @@
        </tr>
        <% end %>
       </tbody>
-     </div>
-    </table>
+     </table>
+    </div>
    </div>
   </div>

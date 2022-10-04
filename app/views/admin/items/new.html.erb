@@ -7,8 +7,8 @@
   <div class = "row mt-5">
    <div class = "mx-auto">
      <%#= form_with model:[:admin,@item], method: :post do |f| %>
+    <%= form_with model: @item ,url: admin_items_path,  method: :post do |f| %>
      <table class ="table">
-        <%= form_with model: @item ,url: admin_items_path,  method: :post do |f| %>
        <tr>
         <td><%= f.label "商品画像" %></td>
         <td><%= f.file_field :image, class: "form-control-file" %></td> <%# imageはカラム名（has_one_attached）と同じ %>
@@ -40,12 +40,12 @@
         </td>
        </tr>
      </table>
-       <div class ="row">
-        <div class ="mx-auto">
-         <%= button_to "新規登録" ,admin_items_path, method: :post ,class: "btn btn-success" %>
-        </div>
+      <div class ="row">
+       <div class ="mx-auto">
+        <%= f.submit "新規登録",class: "btn btn-success" %>
        </div>
+      </div>
    </div>
   </div>
-        <% end %>
+   <% end %>
  </div>

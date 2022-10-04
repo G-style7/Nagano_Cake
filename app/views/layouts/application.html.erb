@@ -8,7 +8,7 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+ <body>
   <header>
     <% if admin_signed_in? %>
      <nav class = "navbar navbar-dark bg-light "> <%# ヘッダー全ての色 %>
@@ -72,7 +72,7 @@
     <% end %>
   </header>
 
-  <body>
+
     <%= yield %>
   </body>
 </html>

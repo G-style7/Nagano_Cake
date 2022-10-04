@@ -7,9 +7,9 @@
   </div>
     <div class ="row">
      <div class ="col-8 mx-auto">
+      <%= form_with model: @customer, url: customer_session_path do |f| %> <%# @public or @customer %>
       <table class= "table mt-3">
        <tbody>
-         <%= form_with model: @customer, url: customer_session_path do |f| %> <%# @public or @customer %>
            <tr>
             <td><%= f.label :メールアドレス %></td>
             <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
@@ -25,9 +25,10 @@
      <div class ="row">
       <div class ="col-3 mx-auto">
         <%= f.submit "ログイン",class: "btn-block btn btn-primary" %>
+         <% end %>
       </div>
      </div>
-         <% end %>
+
      <div class ="col-4 mb-4 bg-light">
       <p class = "text-center">会員登録がお済みでない方</p>
      </div>
